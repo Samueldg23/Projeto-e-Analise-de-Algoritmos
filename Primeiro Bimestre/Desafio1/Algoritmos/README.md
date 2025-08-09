@@ -13,7 +13,7 @@ Será feito esses conjuntos de dados:
 ---
 
 ## 📂 Estrutura de Pastas
-
+```plaintext
 /
 ├── dados/
 │   ├── entrada/     # Arquivos de entrada com números a serem ordenados
