@@ -1,18 +1,34 @@
-## Getting Started
+# 📚 Projeto de Algoritmos de Ordenação em Java
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Este projeto implementa diversos algoritmos de ordenação (Bubble Sort, Insertion Sort, Selection Sort, Merge Sort, Quick Sort e Heap Sort) em **Java**, com entrada e saída de arquivos via terminal.  
+O objetivo é permitir a geração de arquivos com números, a seleção de um algoritmo de ordenação e a medição do tempo de execução (benchmark).
+Para a medição do benchmark será testado pelo menos 3 vezes cada ordenador e fazer uma média do tempo que o algoritmo levou para ordenar o arquivo.
+Será feito esses conjuntos de dados:
+- Crescente com repetição
+- Decrescente com repetição
+- Aleatório com repetição
+- Crescente sem repetição
+- Decrescente sem repetição
+- Aleatório sem repetição
+---
 
-## Folder Structure
+## 📂 Estrutura de Pastas
 
-The workspace contains two folders by default, where:
+/
+├── dados/
+│   ├── entrada/     # Arquivos de entrada com números a serem ordenados
+│   └── saida/       # Arquivos de saída com números ordenados
+├── src/
+│   ├── algoritmos/  # Implementações dos algoritmos de ordenação
+│   │   ├── Ordenador.java
+│   │   ├── BubbleSort.java
+│   │   ├── InsertionSort.java
+│   │   ├── SelectionSort.java
+│   │   ├── MergeSort.java
+│   │   ├── QuickSort.java
+│   │   └── HeapSort.java
+│   ├── gerador/     # Classe para geração de arquivos de números
+│   │   └── GeradorArquivo.java
+│   └── App.java     # Classe principal com menu e execução
+└── README.md
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
