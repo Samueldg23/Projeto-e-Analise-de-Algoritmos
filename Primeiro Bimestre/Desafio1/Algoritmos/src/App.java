@@ -1,5 +1,7 @@
 import gerador.GeradorArquivo;
 import algoritmos.BubbleSort;
+import algoritmos.InsertionSort;
+import algoritmos.Ordenador;
 
 import java.io.*;
 import java.util.*;
@@ -34,15 +36,33 @@ public class App {
 
         int[] numeros = carregarNumeros(caminhoEntrada);
 
-        BubbleSort bubble = new BubbleSort();
+        System.out.println("\nEscolha o algoritmo de ordenação:");
+        System.out.println("1 - BubbleSort");
+        System.out.println("2 - InsertionSort");
+        int escolha = sc.nextInt();
+
+        Ordenador ordenador;
+        String nomeAlgoritmo;
+        String caminhoSaida;
+
+        //ver qual fica melhor o if ou o switch case
+        if (escolha == 1) {
+            ordenador = new BubbleSort();
+            nomeAlgoritmo = "BubbleSort";
+            caminhoSaida = "dados/saida/ordenado_bubble.txt";
+        } else {
+            ordenador = new InsertionSort();
+            nomeAlgoritmo = "InsertionSort";
+            caminhoSaida = "dados/saida/ordenado_insertion.txt";
+        }
+
         long inicio = System.nanoTime();
-        bubble.ordenar(numeros);
+        ordenador.ordenar(numeros);
         long fim = System.nanoTime();
 
         long tempoMs = (fim - inicio) / 1_000_000;
-        System.out.println("Tempo de execução (BubbleSort): " + tempoMs + " ms");
+        System.out.println("Tempo de execução (" + nomeAlgoritmo + "): " + tempoMs + " ms");
 
-        String caminhoSaida = "dados/saida/ordenado_bubble.txt";
         salvarNumeros(caminhoSaida, numeros);
         System.out.println("Arquivo ordenado salvo em: " + caminhoSaida);
 
