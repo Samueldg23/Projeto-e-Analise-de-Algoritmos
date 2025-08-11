@@ -10,10 +10,11 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
 
+        String basePath = System.getProperty("user.dir") + "/dados";
+        String caminhoEntrada;
+
         System.out.println("Deseja gerar um arquivo novo? (s/n)");
         String opcao = sc.nextLine();
-
-        String caminhoEntrada;
 
         if (opcao.equalsIgnoreCase("s")) {
             System.out.print("Digite a quantidade de números: ");
@@ -26,12 +27,12 @@ public class App {
             System.out.print("Com repetição? (true/false): ");
             boolean repeticao = sc.nextBoolean();
 
-            caminhoEntrada = "dados/entrada/arquivo_" + tipo + "_" + qtd + ".txt";
+            caminhoEntrada = basePath + "/entrada/arquivo_" + tipo + "_" + qtd + ".txt";
             GeradorArquivo.gerarArquivo(caminhoEntrada, qtd, tipo, repeticao);
         } else {
-            System.out.print("Digite o nome do arquivo na pasta dados/entrada: ");
+            System.out.print("Digite o nome do arquivo na pasta dados/entrada (sem .txt): ");
             String nomeArquivo = sc.nextLine();
-            caminhoEntrada = "dados/entrada/" + nomeArquivo + ".txt";
+            caminhoEntrada = basePath + "/entrada/" + nomeArquivo + ".txt";
         }
 
         int[] numeros = carregarNumeros(caminhoEntrada);
@@ -44,16 +45,15 @@ public class App {
         Ordenador ordenador;
         String nomeAlgoritmo;
         String caminhoSaida;
-
-        //ver qual fica melhor o if ou o switch case
+        // depois usar o switch
         if (escolha == 1) {
             ordenador = new BubbleSort();
             nomeAlgoritmo = "BubbleSort";
-            caminhoSaida = "dados/saida/ordenado_bubble.txt";
+            caminhoSaida = basePath + "/saida/ordenado_bubble.txt";
         } else {
             ordenador = new InsertionSort();
             nomeAlgoritmo = "InsertionSort";
-            caminhoSaida = "dados/saida/ordenado_insertion.txt";
+            caminhoSaida = basePath + "/saida/ordenado_insertion.txt";
         }
 
         long inicio = System.nanoTime();
