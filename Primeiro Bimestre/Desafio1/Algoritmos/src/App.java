@@ -1,5 +1,6 @@
 import gerador.GeradorArquivo;
 import algoritmos.BubbleSort;
+import algoritmos.HeapSort;
 import algoritmos.InsertionSort;
 import algoritmos.MergeSort;
 import algoritmos.Ordenador;
@@ -56,6 +57,7 @@ public class App {
         System.out.println("3 - Selection Sort");
         System.out.println("4 - Merge Sort");
         System.out.println("5 - Quick Sort");
+        System.out.println("6 - Heap Sort");
         int escolha = sc.nextInt();
         sc.nextLine();
 
@@ -82,6 +84,10 @@ public class App {
             case 5:
                 ordenador = new QuickSort();
                 nomeAlgoritmo = "QuickSort";
+                break;
+            case 6:
+                ordenador = new HeapSort();
+                nomeAlgoritmo = "HeapSort";
                 break;
             default:
                 System.out.println("Opção inválida.");
