@@ -3,6 +3,7 @@ import algoritmos.BubbleSort;
 import algoritmos.InsertionSort;
 import algoritmos.MergeSort;
 import algoritmos.Ordenador;
+import algoritmos.QuickSort;
 import algoritmos.SelectionSort;
 
 import java.io.*;
@@ -54,6 +55,7 @@ public class App {
         System.out.println("2 - Insertion Sort");
         System.out.println("3 - Selection Sort");
         System.out.println("4 - Merge Sort");
+        System.out.println("5 - Quick Sort");
         int escolha = sc.nextInt();
         sc.nextLine();
 
@@ -76,7 +78,11 @@ public class App {
             case 4:
                 ordenador = new MergeSort();
                 nomeAlgoritmo = "MergeSort";
-                break;  
+                break;
+            case 5:
+                ordenador = new QuickSort();
+                nomeAlgoritmo = "QuickSort";
+                break;
             default:
                 System.out.println("Opção inválida.");
                 sc.close();
