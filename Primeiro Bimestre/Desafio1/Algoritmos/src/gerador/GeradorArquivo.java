@@ -32,9 +32,8 @@ public class GeradorArquivo {
             }
         }
 
-        // Criar o arquivo e a pasta se não existir
         File file = new File(caminho);
-        file.getParentFile().mkdirs(); //aqui cria as pastas se elas não existirem
+        file.getParentFile().mkdirs(); // cria a pasta se não existir
 
         try (FileWriter writer = new FileWriter(file)) {
             for (int num : numeros) {

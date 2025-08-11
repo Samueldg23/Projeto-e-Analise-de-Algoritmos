@@ -10,8 +10,9 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
 
-        String basePath = System.getProperty("user.dir") + "/dados";
+        String basePath = System.getProperty("user.dir") + File.separator + "dados";
         String caminhoEntrada;
+        String caminhoSaida;
 
         System.out.println("Deseja gerar um arquivo novo? (s/n)");
         String opcao = sc.nextLine();
@@ -26,13 +27,17 @@ public class App {
 
             System.out.print("Com repetição? (true/false): ");
             boolean repeticao = sc.nextBoolean();
+            sc.nextLine(); // limpar buffer
 
-            caminhoEntrada = basePath + "/entrada/arquivo_" + tipo + "_" + qtd + ".txt";
+            System.out.print("Digite o nome do arquivo (sem .txt): ");
+            String nomeArquivo = sc.nextLine();
+
+            caminhoEntrada = basePath + File.separator + "entrada" + File.separator + nomeArquivo + ".txt";
             GeradorArquivo.gerarArquivo(caminhoEntrada, qtd, tipo, repeticao);
         } else {
-            System.out.print("Digite o nome do arquivo na pasta dados/entrada (sem .txt): ");
+            System.out.print("Digite o nome do arquivo de entrada (sem .txt): ");
             String nomeArquivo = sc.nextLine();
-            caminhoEntrada = basePath + "/entrada/" + nomeArquivo + ".txt";
+            caminhoEntrada = basePath + File.separator + "entrada" + File.separator + nomeArquivo + ".txt";
         }
 
         int[] numeros = carregarNumeros(caminhoEntrada);
@@ -41,20 +46,29 @@ public class App {
         System.out.println("1 - BubbleSort");
         System.out.println("2 - InsertionSort");
         int escolha = sc.nextInt();
+        sc.nextLine();
 
         Ordenador ordenador;
         String nomeAlgoritmo;
-        String caminhoSaida;
-        // depois usar o switch
-        if (escolha == 1) {
-            ordenador = new BubbleSort();
-            nomeAlgoritmo = "BubbleSort";
-            caminhoSaida = basePath + "/saida/ordenado_bubble.txt";
-        } else {
-            ordenador = new InsertionSort();
-            nomeAlgoritmo = "InsertionSort";
-            caminhoSaida = basePath + "/saida/ordenado_insertion.txt";
+
+        switch (escolha) {
+            case 1:
+                ordenador = new BubbleSort();
+                nomeAlgoritmo = "BubbleSort";
+                break;
+            case 2:
+                ordenador = new InsertionSort();
+                nomeAlgoritmo = "InsertionSort";
+                break;
+            default:
+                System.out.println("Opção inválida.");
+                sc.close();
+                return;
         }
+
+        System.out.print("Digite o nome do arquivo de saída (sem .txt): ");
+        String nomeSaida = sc.nextLine();
+        caminhoSaida = basePath + File.separator + "saida" + File.separator + nomeSaida + ".txt";
 
         long inicio = System.nanoTime();
         ordenador.ordenar(numeros);
@@ -82,7 +96,6 @@ public class App {
 
     private static void salvarNumeros(String caminho, int[] numeros) throws IOException {
         File file = new File(caminho);
-        file.getParentFile().mkdirs();
         try (FileWriter fw = new FileWriter(file)) {
             for (int num : numeros) {
                 fw.write(num + "\n");
