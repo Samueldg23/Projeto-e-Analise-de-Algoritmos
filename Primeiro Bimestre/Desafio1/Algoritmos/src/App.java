@@ -1,6 +1,7 @@
 import gerador.GeradorArquivo;
 import algoritmos.BubbleSort;
 import algoritmos.InsertionSort;
+import algoritmos.MergeSort;
 import algoritmos.Ordenador;
 import algoritmos.SelectionSort;
 
@@ -49,9 +50,10 @@ public class App {
         int[] numeros = carregarNumeros(caminhoEntrada);
 
         System.out.println("\nEscolha o algoritmo de ordenação:");
-        System.out.println("1 - BubbleSort");
-        System.out.println("2 - InsertionSort");
-        System.out.println("3 - SelectionSort");
+        System.out.println("1 - Bubble Sort");
+        System.out.println("2 - Insertion Sort");
+        System.out.println("3 - Selection Sort");
+        System.out.println("4 - Merge Sort");
         int escolha = sc.nextInt();
         sc.nextLine();
 
@@ -71,6 +73,10 @@ public class App {
                 ordenador = new SelectionSort();
                 nomeAlgoritmo = "SelectionSort";
                 break;
+            case 4:
+                ordenador = new MergeSort();
+                nomeAlgoritmo = "MergeSort";
+                break;  
             default:
                 System.out.println("Opção inválida.");
                 sc.close();
