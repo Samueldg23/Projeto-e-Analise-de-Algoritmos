@@ -1,5 +1,8 @@
 package gerador;
 
+//!https://www.youtube.com/watch?v=572A_N8h_Xs
+//?https://www.youtube.com/watch?v=oNnN2dHEoo8
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

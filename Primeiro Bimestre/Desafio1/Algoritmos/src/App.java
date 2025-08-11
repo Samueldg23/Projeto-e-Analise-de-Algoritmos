@@ -6,6 +6,11 @@ import algoritmos.Ordenador;
 import java.io.*;
 import java.util.*;
 
+//! https://www.youtube.com/watch?v=_HBTCUNPxOg&list=PLncEdvQ20-mgGanwuFczm-4IwIdIcIiha
+
+
+
+
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
