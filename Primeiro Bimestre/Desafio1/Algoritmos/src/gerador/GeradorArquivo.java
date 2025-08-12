@@ -22,6 +22,7 @@ public class GeradorArquivo {
                     numeros[i] = i;
                 }
             }
+            
         } else if (tipo.equalsIgnoreCase("decrescente")) {
             for (int i = 0; i < quantidade; i++) {
                 if (repeticao) {
