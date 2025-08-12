@@ -12,31 +12,42 @@ public class GeradorArquivo {
 
     public static void gerarArquivo(String caminho, int quantidade, String tipo, boolean repeticao) throws IOException {
         int[] numeros = new int[quantidade];
+        int repeticoes = 3;
 
         if (tipo.equalsIgnoreCase("crescente")) {
             for (int i = 0; i < quantidade; i++) {
-                numeros[i] = repeticao ? i % 1000 : i;
+                if (repeticao) {
+                    numeros[i] = i / repeticoes;
+                } else {
+                    numeros[i] = i;
+                }
             }
         } else if (tipo.equalsIgnoreCase("decrescente")) {
             for (int i = 0; i < quantidade; i++) {
-                numeros[i] = repeticao ? (quantidade - i) % 1000 : quantidade - i;
+                if (repeticao) {
+                    numeros[i] = (quantidade - 1 - i) / repeticoes;
+                } else {
+                    numeros[i] = quantidade - 1 - i;
+                }
             }
         } else if (tipo.equalsIgnoreCase("aleatorio")) {
             Random random = new Random();
             if (repeticao) {
                 for (int i = 0; i < quantidade; i++) {
-                    numeros[i] = random.nextInt(quantidade);
+                    numeros[i] = random.nextInt((quantidade + repeticoes - 1) / repeticoes);
                 }
             } else {
                 List<Integer> lista = new ArrayList<>();
-                for (int i = 0; i < quantidade; i++) lista.add(i);
+                for (int i = 0; i < quantidade; i++)
+                    lista.add(i);
                 Collections.shuffle(lista);
-                for (int i = 0; i < quantidade; i++) numeros[i] = lista.get(i);
+                for (int i = 0; i < quantidade; i++)
+                    numeros[i] = lista.get(i);
             }
         }
 
         File file = new File(caminho);
-        file.getParentFile().mkdirs(); // cria a pasta se não existir
+        file.getParentFile().mkdirs();
 
         try (FileWriter writer = new FileWriter(file)) {
             for (int num : numeros) {
