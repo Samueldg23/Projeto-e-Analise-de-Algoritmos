@@ -41,7 +41,7 @@ public class App {
             System.out.print("Digite o nome do arquivo (sem .txt): ");
             String nomeArquivo = sc.nextLine();
 
-            caminhoEntrada = basePath + File.separator + "entrada" + File.separator + nomeArquivo + ".txt";
+            caminhoEntrada = basePath + File.separator + "entrada" + File.separator + nomeArquivo + "_" + qtd + ".txt";
             GeradorArquivo.gerarArquivo(caminhoEntrada, qtd, tipo, repeticao);
         } else {
             System.out.print("Digite o nome do arquivo de entrada (sem .txt): ");
