@@ -36,7 +36,7 @@ public class App {
 
             System.out.print("Com repetição? (true/false): ");
             boolean repeticao = sc.nextBoolean();
-            sc.nextLine(); // limpar buffer
+            sc.nextLine(); 
 
             System.out.print("Digite o nome do arquivo (sem .txt): ");
             String nomeArquivo = sc.nextLine();
