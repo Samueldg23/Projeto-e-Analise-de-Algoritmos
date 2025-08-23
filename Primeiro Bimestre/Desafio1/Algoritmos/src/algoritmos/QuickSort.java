@@ -3,6 +3,7 @@ package algoritmos;
 
 //!https://www.youtube.com/watch?v=h8eyY7dIiN4
 //?https://www.youtube.com/watch?v=Vtckgz38QHs
+//?https://www.youtube.com/watch?v=nV_WE8SEuGE
 public class QuickSort implements Ordenador {
 
     @Override
