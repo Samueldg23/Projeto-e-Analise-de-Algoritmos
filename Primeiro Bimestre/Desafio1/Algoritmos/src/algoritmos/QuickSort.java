@@ -19,7 +19,9 @@ public class QuickSort implements Ordenador {
     }
 
     private int partition(int[] array, int low, int high) {
-        int pivot = array[high];
+        int middle = low + (high - low) / 2;
+        int pivot = array[middle];
+        swap(array, middle, high); 
         int i = low - 1;
 
         for (int j = low; j < high; j++) {
@@ -28,13 +30,16 @@ public class QuickSort implements Ordenador {
                 swap(array, i, j);
             }
         }
+
         swap(array, i + 1, high);
         return i + 1;
     }
 
     private void swap(int[] array, int i, int j) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+        if (i != j) {
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
     }
 }
