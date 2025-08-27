@@ -97,13 +97,17 @@ public class App {
 
         long inicio = System.nanoTime();
         long memoriaAntes = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-        ordenador.ordenar(numeros);
-        long fim = System.nanoTime();
-        long memoriaDepois = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
 
+        ordenador.ordenar(numeros);
+
+        long fim = System.nanoTime();
+
+        long memoriaDepois = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        long memoriaUsada = memoriaDepois - memoriaAntes;
         long tempoMs = (fim - inicio) / 1_000_000;
+          
         System.out.println("Tempo de execução (" + nomeAlgoritmo + "): " + tempoMs + " ms");
-        System.out.println("Uso de memória (" + nomeAlgoritmo + "): " + (memoriaDepois - memoriaAntes) + " bytes");
+        System.out.println("Uso de memória (" + nomeAlgoritmo + "): " + memoriaUsada + " bytes");
 
         salvarNumeros(caminhoSaida, numeros);
         System.out.println("Arquivo ordenado salvo em: " + caminhoSaida);
