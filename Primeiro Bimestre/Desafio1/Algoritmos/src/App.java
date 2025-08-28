@@ -104,10 +104,12 @@ public class App {
 
         long memoriaDepois = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         long memoriaUsada = memoriaDepois - memoriaAntes;
+        double memoriaUsadaKB = memoriaUsada / 1024.0;
         long tempoMs = (fim - inicio) / 1_000_000;
           
         System.out.println("Tempo de execução (" + nomeAlgoritmo + "): " + tempoMs + " ms");
         System.out.println("Uso de memória (" + nomeAlgoritmo + "): " + memoriaUsada + " bytes");
+        System.out.println("Uso de memória (" + nomeAlgoritmo + "): " + memoriaUsadaKB + " KB");
 
         salvarNumeros(caminhoSaida, numeros);
         System.out.println("Arquivo ordenado salvo em: " + caminhoSaida);
