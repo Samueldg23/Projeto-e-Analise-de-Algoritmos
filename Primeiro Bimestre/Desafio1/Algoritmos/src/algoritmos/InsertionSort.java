@@ -14,7 +14,10 @@ public class InsertionSort implements Ordenador {
                 array[j + 1] = array[j];
                 j--;
             }
-            array[j + 1] = chave;
+            //adicionei pra melhorar a eficiencia caso o(n)
+            if (j + 1 != i) {
+                array[j + 1] = chave;
+            }
         }
     }
 }

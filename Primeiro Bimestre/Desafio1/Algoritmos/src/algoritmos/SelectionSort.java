@@ -15,9 +15,12 @@ public class SelectionSort implements Ordenador {
                     minIndex = j;
                 }
             }
-            int temp = array[minIndex];
-            array[minIndex] = array[i];
-            array[i] = temp;
+
+            if (minIndex != i) {
+                int temp = array[minIndex];
+                array[minIndex] = array[i];
+                array[i] = temp;
+            }
         }
     }
 }

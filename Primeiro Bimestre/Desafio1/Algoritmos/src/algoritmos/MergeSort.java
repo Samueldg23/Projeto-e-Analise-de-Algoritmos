@@ -8,51 +8,39 @@ public class MergeSort implements Ordenador {
 
     @Override
     public void ordenar(int[] array) {
-        mergeSort(array, 0, array.length - 1);
+        int[] aux = new int[array.length];
+        mergeSort(array, aux, 0, array.length - 1);
     }
 
-    private void mergeSort(int[] array, int left, int right) {
+    private void mergeSort(int[] array, int[] aux, int left, int right) {
         if (left < right) {
             int mid = (left + right) / 2;
-            mergeSort(array, left, mid);
-            mergeSort(array, mid + 1, right);
-            merge(array, left, mid, right);
+            mergeSort(array, aux, left, mid);
+            mergeSort(array, aux, mid + 1, right);
+            merge(array, aux, left, mid, right);
         }
     }
 
-    private void merge(int[] array, int left, int mid, int right) {
-        int n1 = mid - left + 1;
-        int n2 = right - mid;
+    private void merge(int[] array, int[] aux, int left, int mid, int right) {
+        for (int k = left; k <= right; k++) {
+            aux[k] = array[k];
+        }
 
-        int[] L = new int[n1];
-        int[] R = new int[n2];
+        int i = left;
+        int j = mid + 1;
+        int k = left;
 
-        for (int i = 0; i < n1; i++) L[i] = array[left + i];
-        for (int j = 0; j < n2; j++) R[j] = array[mid + 1 + j];
-
-        int i = 0, j = 0, k = left;
-
-        while (i < n1 && j < n2) {
-            if (L[i] <= R[j]) {
-                array[k] = L[i];
-                i++;
+        while (i <= mid && j <= right) {
+            if (aux[i] <= aux[j]) {
+                array[k++] = aux[i++];
             } else {
-                array[k] = R[j];
-                j++;
+                array[k++] = aux[j++];
             }
-            k++;
         }
 
-        while (i < n1) {
-            array[k] = L[i];
-            i++;
-            k++;
+        while (i <= mid) {
+            array[k++] = aux[i++];
         }
 
-        while (j < n2) {
-            array[k] = R[j];
-            j++;
-            k++;
-        }
     }
 }
