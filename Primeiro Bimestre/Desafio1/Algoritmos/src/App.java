@@ -32,7 +32,7 @@ public class App {
 
             System.out.print("Com repetição? (true/false): ");
             boolean repeticao = sc.nextBoolean();
-            sc.nextLine(); 
+            sc.nextLine();
 
             System.out.print("Digite o nome do arquivo (sem .txt): ");
             String nomeArquivo = sc.nextLine();
@@ -95,22 +95,28 @@ public class App {
         String nomeSaida = sc.nextLine();
         caminhoSaida = basePath + File.separator + "saida" + File.separator + nomeSaida + ".txt";
 
+        Runtime runtime = Runtime.getRuntime();
+        runtime.gc();
+        long heapAntes = runtime.totalMemory();
+        long memoriaAntes = runtime.totalMemory() - runtime.freeMemory();
+
         long inicio = System.nanoTime();
-        long memoriaAntes = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-
         ordenador.ordenar(numeros);
-
         long fim = System.nanoTime();
 
-        long memoriaDepois = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-        long memoriaUsada = memoriaDepois - memoriaAntes;
-        double memoriaUsadaKB = memoriaUsada / 1024.0;
-        long tempoMs = (fim - inicio) / 1_000_000;
-          
-        System.out.println("Tempo de execução (" + nomeAlgoritmo + "): " + tempoMs + " ms");
-        System.out.println("Uso de memória (" + nomeAlgoritmo + "): " + memoriaUsada + " bytes");
-        System.out.println("Uso de memória (" + nomeAlgoritmo + "): " + memoriaUsadaKB + " KB");
+        long memoriaDepois = runtime.totalMemory() - runtime.freeMemory();
+        long heapDepois = runtime.totalMemory();
 
+        long memoriaUsada = memoriaDepois - memoriaAntes;
+        long heapUsado = heapDepois - heapAntes;
+        long tempoMs = (fim - inicio) / 1_000_000;
+        long tamanhoArrayBytes = numeros.length * Integer.BYTES;
+        System.out.println("\n--- Resultados ---");
+        System.out.println("Tempo de execução (" + nomeAlgoritmo + "): " + tempoMs + " ms");
+        System.out.printf("Tamanho estimado do vetor: %d bytes (%.2f KB)\n", tamanhoArrayBytes,
+                tamanhoArrayBytes / 1024.0);
+        System.out.printf("Memória usada pela ordenação: %d bytes (%.2f KB)\n", memoriaUsada, memoriaUsada / 1024.0);
+        System.out.printf("Crescimento total do heap: %d bytes (%.2f KB)\n", heapUsado, heapUsado / 1024.0);
         salvarNumeros(caminhoSaida, numeros);
         System.out.println("Arquivo ordenado salvo em: " + caminhoSaida);
 
