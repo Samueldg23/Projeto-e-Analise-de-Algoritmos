@@ -14,7 +14,9 @@ public class InsertionSort implements Ordenador {
                 array[j + 1] = array[j];
                 j--;
             }
-            //adicionei pra melhorar a eficiencia caso o(n)
+//* Verifica se houve movimentação de elementos antes de inserir a chave.
+//* Caso não tenha havido, o elemento já estava na posição correta,
+//* evita uma atribuição desnecessária, melhorando a eficiência no melhor caso (O(n)).
             if (j + 1 != i) {
                 array[j + 1] = chave;
             }
